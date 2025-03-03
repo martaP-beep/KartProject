@@ -14,6 +14,15 @@ public class DrivingScript : MonoBehaviour
 
     public GameObject backLight;
 
+    public AudioSource engineSound;
+    public int currentGear;
+    public int numGears;
+    float rpm;
+    public float currentGearPerc;
+
+
+
+
     public void Drive(float accel, float brake, float steer)
     {
         accel = Mathf.Clamp(accel, -1, 1);
@@ -30,6 +39,8 @@ public class DrivingScript : MonoBehaviour
         }
 
         float thrustTorque = 0;
+
+        currentSpeed = rb.velocity.magnitude * 10;
         if (currentSpeed < maxSpeed)
         {
             thrustTorque = accel * torque;
@@ -52,5 +63,33 @@ public class DrivingScript : MonoBehaviour
                 wheel.wheel.transform.rotation = quat;
             }
         
+    }
+
+    public void EngineSound()
+    {
+        float gearPerc = 1 / (float)numGears;
+
+        float targetGear = Mathf.InverseLerp(gearPerc * currentGear,
+            gearPerc * (currentGear+1), Mathf.Abs(currentSpeed/maxSpeed));
+
+        currentGearPerc = Mathf.Lerp(currentGearPerc, targetGear,
+            Time.deltaTime * 5);
+
+        rpm = Mathf.Lerp(currentGear / (float)numGears, 1, currentGearPerc);
+
+        float upperGearMax = (1 / (float)numGears) * (currentGear + 1);
+        float downGearMax = (1 / (float)numGears) * (currentGear);
+
+        float speedPerc = Mathf.Abs(currentSpeed/maxSpeed);
+
+        if (currentGear > 0 && speedPerc < downGearMax) 
+            currentGear--;
+
+        if (currentGear < (numGears - 1) && speedPerc > upperGearMax) 
+            currentGear++;
+
+
+        float pitch = Mathf.Lerp(1, 6, rpm);
+        engineSound.pitch = Mathf.Min(6, pitch) * 0.1f;
     }
 }
