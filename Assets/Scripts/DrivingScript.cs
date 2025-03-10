@@ -40,7 +40,7 @@ public class DrivingScript : MonoBehaviour
 
         float thrustTorque = 0;
 
-        currentSpeed = rb.velocity.magnitude * 10;
+        currentSpeed = rb.velocity.magnitude * 5;
         if (currentSpeed < maxSpeed)
         {
             thrustTorque = accel * torque;
