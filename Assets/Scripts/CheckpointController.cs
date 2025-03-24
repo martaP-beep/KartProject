@@ -9,6 +9,8 @@ public class CheckpointController : MonoBehaviour
     public int nextPoint;
     int pointCount;
 
+    public GameObject lastPoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,16 @@ public class CheckpointController : MonoBehaviour
             GameObject.FindGameObjectsWithTag("Checkpoint");
 
         pointCount = checkpoints.Length;
+
+        for(int i = 0; i < pointCount; i++)
+        {
+            if (checkpoints[i].name == "0")
+            {
+                lastPoint = checkpoints[i];
+                break;
+            }
+        }
+
     }
 
 
@@ -28,6 +40,7 @@ public class CheckpointController : MonoBehaviour
 
             if (thisPoint == nextPoint)
             {
+                lastPoint = other.gameObject;
 
                 checkpoint = thisPoint;
                 if (checkpoint == 0)
