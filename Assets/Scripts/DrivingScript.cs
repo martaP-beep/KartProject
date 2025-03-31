@@ -20,7 +20,7 @@ public class DrivingScript : MonoBehaviour
     float rpm;
     public float currentGearPerc;
 
-
+    public GameObject cameraTarget;
 
 
     public void Drive(float accel, float brake, float steer)

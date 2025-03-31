@@ -10,6 +10,7 @@ public class CarApperance : MonoBehaviour
     public Renderer carRendrer;
     public TMP_Text nameText;
 
+    public int playerNumber;
 
     // Start is called before the first frame update
     void Start()

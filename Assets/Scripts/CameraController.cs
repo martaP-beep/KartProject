@@ -32,4 +32,14 @@ public class CameraController : MonoBehaviour
             positions[activePosition];
         }
     }
+
+    public void SetCameraProperties(GameObject car)
+    {
+        camera.Follow = 
+            car.GetComponent<DrivingScript>().rb.transform;
+
+        camera.LookAt = 
+            car.GetComponent<DrivingScript>().cameraTarget.transform;
+
+    }
 }

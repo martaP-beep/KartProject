@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (checkpointController.lap == RaceController.totalLaps + 1) 
+            return;
+
         float steer = Input.GetAxis("Horizontal");
         float accel = Input.GetAxis("Vertical");
         float brake = Input.GetAxis("Jump");
