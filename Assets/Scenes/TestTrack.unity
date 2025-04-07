@@ -963,7 +963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 535771611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1222846331}
+        m_TargetAssemblyTypeName: RaceController, Assembly-CSharp
+        m_MethodName: BeginGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &535771611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2855,6 +2867,8 @@ GameObject:
   - component: {fileID: 1222846332}
   - component: {fileID: 1222846331}
   - component: {fileID: 1222846333}
+  - component: {fileID: 1222846335}
+  - component: {fileID: 1222846334}
   m_Layer: 0
   m_Name: RaceController
   m_TagString: Untagged
@@ -2887,6 +2901,8 @@ MonoBehaviour:
   - {fileID: 538214459}
   - {fileID: 564403660}
   - {fileID: 1710275008}
+  startRace: {fileID: 535771608}
+  waitText: {fileID: 2131084241}
 --- !u!4 &1222846332
 Transform:
   m_ObjectHideFlags: 0
@@ -2914,7 +2930,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.077
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2998,6 +3014,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1222846334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222846330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1222846335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222846330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1222846334}
+  sceneViewId: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1230910177
 GameObject:
   m_ObjectHideFlags: 0

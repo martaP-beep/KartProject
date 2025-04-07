@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Realtime;
 using Photon.Pun;
-
+using TMPro;
 public class RaceLauncher : MonoBehaviourPunCallbacks
 {
     public InputField playerName;
@@ -13,7 +13,7 @@ public class RaceLauncher : MonoBehaviourPunCallbacks
     bool isConnecting;
     byte maxPlayerPerRoom = 3;
     string gameVersion = "1";
-    public Text networkText;
+    public TMP_Text networkText;
 
     public void SetName(string name)
     {
