@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lap: 0
-  checkpoint: -1
+  checkpoint: 0
   nextPoint: 0
   lastPoint: {fileID: 0}
 --- !u!1 &3586334478062338983
