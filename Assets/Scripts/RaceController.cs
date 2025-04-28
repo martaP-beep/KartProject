@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class RaceController : MonoBehaviourPunCallbacks
 {
@@ -28,6 +29,13 @@ public class RaceController : MonoBehaviourPunCallbacks
 
     public GameObject startRace;
     public GameObject waitText;
+
+    public RawImage mirror;
+
+    public void SetMirror (Camera backCamera)
+    {
+        mirror.texture = backCamera.targetTexture;
+    }
 
     public void LoadScene(int index)
     {
@@ -109,10 +117,18 @@ public class RaceController : MonoBehaviourPunCallbacks
             startPos = spawnPos[PhotonNetwork.CurrentRoom.PlayerCount - 1].position;
             startRot = spawnPos[PhotonNetwork.CurrentRoom.PlayerCount - 1].rotation;
 
+            object[] data = new object[4];
+            data[0] = PlayerPrefs.GetString("PlayerName");
+            data[1] = PlayerPrefs.GetInt("Red");
+            data[2] = PlayerPrefs.GetInt("Green");
+            data[3] = PlayerPrefs.GetInt("Blue");
+
             if(OnlinePlayer.LocalPlayerInstance == null)
             {
                 playerCar = PhotonNetwork.Instantiate(
-                    carPrefab.name, startPos, startRot, 0);
+                    carPrefab.name, startPos, startRot, 0, data);
+
+                playerCar.GetComponent<CarApperance>().SetLocalPlayer();
             }
 
             if (PhotonNetwork.IsMasterClient)

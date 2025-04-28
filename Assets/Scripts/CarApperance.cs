@@ -12,32 +12,35 @@ public class CarApperance : MonoBehaviour
 
     public int playerNumber;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if(playerNumber == 0)
-        {
-            playerName = PlayerPrefs.GetString("PlayerName");
-            carColor = ColorCar.IntToColor(
-                PlayerPrefs.GetInt("Red"),
-                PlayerPrefs.GetInt("Green"),
-                PlayerPrefs.GetInt("Blue")
-                );
-        }
-        else
-        {
-            playerName = "Random " + playerNumber;
-            carColor = new Color(
-                Random.Range(0,255),
-                Random.Range(0,255),
-                Random.Range(0,255)
-                );
-        }
+    public Camera backCamera;
 
+    // Start is called before the first frame update
+    
+
+    public void SetLocalPlayer()
+    {
+        playerName = PlayerPrefs.GetString("PlayerName");
+        carColor = ColorCar.IntToColor(
+            PlayerPrefs.GetInt("Red"),
+            PlayerPrefs.GetInt("Green"),
+            PlayerPrefs.GetInt("Blue")
+            );
+        SetNameAndColor(playerName, carColor);
+        FindObjectOfType<CameraController>().
+            SetCameraProperties(this.gameObject);
+
+        RenderTexture texture = new RenderTexture(1024, 1024, 0);
+        backCamera.targetTexture = texture;
+        FindObjectOfType<RaceController>().SetMirror(backCamera);
+    }
+
+    public void SetNameAndColor(string playerName, Color carColor)
+    {
         nameText.text = playerName;
         carRendrer.material.color = carColor;
         nameText.color = carColor;
     }
+
 
     // Update is called once per frame
     void Update()
