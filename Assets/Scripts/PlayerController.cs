@@ -26,6 +26,10 @@ public class PlayerController : MonoBehaviour
         float accel = Input.GetAxis("Vertical");
         float brake = Input.GetAxis("Jump");
 
+        bool nitro = Input.GetKeyDown(KeyCode.LeftShift);
+
+        drivingScript.Nitro(nitro);
+
         if (drivingScript.rb.velocity.magnitude > 1
             || RaceController.racing == false)
             lastTimeMoving = Time.time;

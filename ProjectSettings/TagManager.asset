@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - Car
+  - Nitro
   layers:
   - Default
   - TransparentFX

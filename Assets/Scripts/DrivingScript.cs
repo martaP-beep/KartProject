@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class DrivingScript : MonoBehaviour
 {
     public WheelScript[] wheels;
@@ -21,6 +23,46 @@ public class DrivingScript : MonoBehaviour
     public float currentGearPerc;
 
     public GameObject cameraTarget;
+
+    public int nitroFuel = 3;
+    public GameObject nitroLight;
+
+    public TMP_Text nitroText;
+
+
+    private void Start()
+    {
+        nitroText = GameObject.FindGameObjectWithTag("Nitro")
+            .GetComponent<TMP_Text>();
+
+        nitroText.text = nitroFuel.ToString();
+    }
+
+    public void ChangeFuelText()
+    {
+        nitroText.text = nitroFuel.ToString();
+    }
+
+    void Boost(float power)
+    {
+        rb.AddForce(rb.gameObject.transform.forward * power);
+    }
+
+
+    public void Nitro(bool on)
+    {
+        if(on && nitroFuel > 0)
+        {
+            Boost(1000000);
+            nitroFuel--;
+            ChangeFuelText();
+            nitroLight.SetActive(true);
+        }
+        else
+        {
+            nitroLight.SetActive(false);
+        }
+    }
 
 
     public void Drive(float accel, float brake, float steer)
